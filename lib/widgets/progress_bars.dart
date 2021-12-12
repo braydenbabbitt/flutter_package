@@ -381,7 +381,7 @@ class _AnimatedRectProgressBarPainter extends CustomPainter {
 
     final RRect clipRect = RRect.fromLTRBR(0, 0, width ?? size.width, height ?? size.height, clipCornerRadius ?? Radius.zero);
 
-    if (backgroundColor != null || backgroundColor != Colors.transparent) {
+    if (backgroundColor != null && backgroundColor != Colors.transparent) {
       final backgroundPaint = Paint()
         ..color = backgroundColor!
         ..style = PaintingStyle.fill;
