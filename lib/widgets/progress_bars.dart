@@ -172,7 +172,7 @@ class AnimatedLinearProgressBarPainter extends CustomPainter {
       bottomRight: rightRadius,
     );
 
-    if (backgroundColor != null || backgroundColor != Colors.transparent) {
+    if (backgroundColor != null && backgroundColor != Colors.transparent) {
       final backgroundPaint = Paint()
         ..color = backgroundColor ?? Colors.transparent
         ..style = PaintingStyle.fill;
