@@ -395,7 +395,7 @@ class _AnimatedRectProgressBarPainter extends CustomPainter {
     if (percentage != null) {
       switch (fillDirection) {
         case AxisDirection.up:
-          paintBar = RRect.fromLTRBAndCorners(0, clipRect.height - (clipRect.height * percentage!), clipRect.width, clipRect.height,
+          paintBar = RRect.fromLTRBAndCorners(0, clipRect.height - (clipRect.height * (percentage ?? 0)), clipRect.width, clipRect.height,
             bottomRight: Radius.zero,
             bottomLeft: Radius.zero,
             topLeft: cornerRadius,
@@ -403,7 +403,7 @@ class _AnimatedRectProgressBarPainter extends CustomPainter {
           );
           break;
         case AxisDirection.down:
-          paintBar = RRect.fromLTRBAndCorners(0, 0, clipRect.width, clipRect.height * percentage!,
+          paintBar = RRect.fromLTRBAndCorners(0, 0, clipRect.width, clipRect.height * (percentage ?? 0),
             topRight: Radius.zero,
             topLeft: Radius.zero,
             bottomLeft: cornerRadius,
@@ -411,7 +411,7 @@ class _AnimatedRectProgressBarPainter extends CustomPainter {
           );
           break;
         case AxisDirection.left:
-          paintBar = RRect.fromLTRBAndCorners(clipRect.width - (clipRect.width * percentage!), 0, clipRect.width, clipRect.height,
+          paintBar = RRect.fromLTRBAndCorners(clipRect.width - (clipRect.width * (percentage ?? 0)), 0, clipRect.width, clipRect.height,
             topRight: Radius.zero,
             bottomRight: Radius.zero,
             topLeft: cornerRadius,
@@ -419,7 +419,7 @@ class _AnimatedRectProgressBarPainter extends CustomPainter {
           );
           break;
         default:
-          paintBar = RRect.fromLTRBAndCorners(0, 0, clipRect.width * percentage!, clipRect.height,
+          paintBar = RRect.fromLTRBAndCorners(0, 0, clipRect.width * (percentage ?? 0), clipRect.height,
             topLeft: Radius.zero,
             bottomLeft: Radius.zero,
             bottomRight: cornerRadius,
