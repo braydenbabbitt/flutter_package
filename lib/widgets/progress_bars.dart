@@ -202,6 +202,7 @@ class AnimatedRectProgressBar extends StatefulWidget {
   //Optional properties -- Defaults
   final Radius outerCornerRadius; //Radius.zero
   final Radius innerCornerRadius; //Radius.zero
+  final Color backgroundColor; //Colors.transparent
   final Curve animationCurve; //Curves.easeInOut
   final Duration animationDuration; //Duration(milliseconds: 500)
   final AxisDirection fillDirection; //AxisDirection.right
@@ -209,7 +210,6 @@ class AnimatedRectProgressBar extends StatefulWidget {
   //Nullable properties -- Behavior if null
   final double? height; //Will assume height of container
   final double? width; //Will assume width of container
-  final Color? backgroundColor; //Will skip painting the background
   final Color? borderColor; //Will skip painting the border
   final double? borderWidth; //Will skip painting the border
   final String? displayText; //Will skip painting any child
@@ -222,12 +222,12 @@ class AnimatedRectProgressBar extends StatefulWidget {
     required this.fillColor,
     this.outerCornerRadius = Radius.zero,
     this.innerCornerRadius = Radius.zero,
+    this.backgroundColor = Colors.transparent,
     this.animationCurve = Curves.easeInOut,
     this.animationDuration = const Duration(milliseconds: 500),
     this.fillDirection = AxisDirection.right,
     this.height,
     this.width,
-    this.backgroundColor,
     this.borderColor,
     this.borderWidth,
     this.displayText,
@@ -307,7 +307,7 @@ class _AnimatedRectProgressBarState extends State<AnimatedRectProgressBar> with
             color: widget.fillColor,
             cornerRadius: widget.innerCornerRadius,
             paintingStyle: PaintingStyle.fill,
-            backgroundColor: widget.backgroundColor ?? Colors.transparent,
+            backgroundColor: widget.backgroundColor,
             fillDirection: widget.fillDirection,
             height: widget.height,
             width: widget.width,
