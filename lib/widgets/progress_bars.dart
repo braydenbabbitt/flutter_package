@@ -290,11 +290,15 @@ class _AnimatedRectProgressBarState extends State<AnimatedRectProgressBar> with
       ),
       builder: (context, child) {
         return CustomPaint(
-          child: (widget.displayText != null) ? Center(
-              child: Text(
-                widget.displayText!,
-                style: widget.textStyle,
-              )
+          child: (widget.displayText != null) ? SizedBox(
+            width: widget.width,
+            height: widget.height,
+            child: Center(
+                child: Text(
+                  widget.displayText!,
+                  style: widget.textStyle,
+                )
+            ),
           ) : null,
           painter: _AnimatedRectProgressBarPainter(
             percentage: _valueTween.evaluate(_curvedAnimation),
