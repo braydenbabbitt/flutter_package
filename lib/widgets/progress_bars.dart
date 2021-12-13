@@ -430,7 +430,7 @@ class _AnimatedRectProgressBarPainter extends CustomPainter {
           break;
       }
     } else {
-      paintBar = clipRect;
+      paintBar = RRect.fromLTRBR(0, 0, width ?? size.width, height ?? size.height, cornerRadius);
     }
 
     canvas.drawRRect(paintBar, paint);
