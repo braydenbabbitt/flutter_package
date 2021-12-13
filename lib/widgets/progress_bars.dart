@@ -276,32 +276,26 @@ class _AnimatedRectProgressBarState extends State<AnimatedRectProgressBar> with
 
   @override
   Widget build(BuildContext context) {
-    final Widget? displayTextWidget = (widget.displayText != null) ? Center(
-      child: Text(
-        widget.displayText!,
-        style: widget.textStyle,
-      )
-    ) : null;
-
-    final CustomPainter? strokePainter = (widget.borderColor == null || widget.borderWidth == null) ? null : _AnimatedRectProgressBarPainter(
-      color: widget.borderColor!,
-      cornerRadius: widget.outerCornerRadius,
-      paintingStyle: PaintingStyle.stroke,
-      height: widget.height,
-      width: widget.width,
-      borderWidth: widget.borderWidth,
-    );
-
     return AnimatedBuilder(
       animation: _curvedAnimation,
       child: SizedBox(
         height: widget.height,
         width: widget.width,
-        child: displayTextWidget,
+        child: (widget.displayText != null) ? Center(
+            child: Text(
+              widget.displayText!,
+              style: widget.textStyle,
+            )
+        ) : null,
       ),
       builder: (context, child) {
         return CustomPaint(
-          child: child,
+          child: (widget.displayText != null) ? Center(
+              child: Text(
+                widget.displayText!,
+                style: widget.textStyle,
+              )
+          ) : null,
           painter: _AnimatedRectProgressBarPainter(
             percentage: _valueTween.evaluate(_curvedAnimation),
             color: widget.fillColor,
@@ -314,7 +308,14 @@ class _AnimatedRectProgressBarState extends State<AnimatedRectProgressBar> with
             clipCornerRadius: widget.outerCornerRadius,
             borderWidth: widget.borderWidth,
           ),
-          foregroundPainter: strokePainter,
+          foregroundPainter: (widget.borderColor == null || widget.borderWidth == null) ? null : _AnimatedRectProgressBarPainter(
+            color: widget.borderColor!,
+            cornerRadius: widget.outerCornerRadius,
+            paintingStyle: PaintingStyle.stroke,
+            height: widget.height,
+            width: widget.width,
+            borderWidth: widget.borderWidth,
+          ),
         );
       },
     );
