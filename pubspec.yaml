@@ -1,6 +1,6 @@
 name: flutter_package
 description: Custom components for reuse
-version: 0.1.3+4
+version: 0.1.3+5
 homepage: https://github.com/braydenbabbitt/flutter_package.git
 
 environment:

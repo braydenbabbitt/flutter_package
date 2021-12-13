@@ -430,9 +430,10 @@ class _AnimatedRectProgressBarPainter extends CustomPainter {
           );
           break;
       }
-
-      canvas.drawRRect(paintBar, paint);
+    } else {
+      paintBar = clipRect;
     }
+    canvas.drawRRect(paintBar, paint);
   }
 
   @override
