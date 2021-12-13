@@ -307,11 +307,11 @@ class _AnimatedRectProgressBarState extends State<AnimatedRectProgressBar> with
             color: widget.fillColor,
             cornerRadius: widget.innerCornerRadius,
             paintingStyle: PaintingStyle.fill,
+            backgroundColor: widget.backgroundColor ?? Colors.transparent,
             fillDirection: widget.fillDirection,
             height: widget.height,
             width: widget.width,
             clipCornerRadius: widget.outerCornerRadius,
-            backgroundColor: widget.backgroundColor,
             borderWidth: widget.borderWidth,
           ),
           foregroundPainter: strokePainter,
@@ -349,12 +349,14 @@ class _AnimatedRectProgressBarPainter extends CustomPainter {
   final Radius cornerRadius;
   final PaintingStyle paintingStyle;
 
+  //Optional properties -- Default value
+  final Color backgroundColor; //Colors.transparent
+
   //Nullable properties -- Behavior if null
   final double? percentage;
   final double? height; //Will default to paint size.height property
   final double? width; //Will default to paint size.width property
   final Radius? clipCornerRadius; //Will default to Radius.zero
-  final Color? backgroundColor; //Will skip painting the background
   final double? borderWidth; //Will skip painting border
   final AxisDirection? fillDirection;
 
@@ -362,11 +364,11 @@ class _AnimatedRectProgressBarPainter extends CustomPainter {
     required this.color,
     required this.cornerRadius,
     required this.paintingStyle,
+    this.backgroundColor = Colors.transparent,
     this.percentage,
     this.height,
     this.width,
     this.clipCornerRadius,
-    this.backgroundColor,
     this.borderWidth,
     this.fillDirection,
   });
@@ -381,9 +383,9 @@ class _AnimatedRectProgressBarPainter extends CustomPainter {
 
     final RRect clipRect = RRect.fromLTRBR(0, 0, width ?? size.width, height ?? size.height, clipCornerRadius ?? Radius.zero);
 
-    if (backgroundColor != null && backgroundColor != Colors.transparent) {
+    if (backgroundColor != Colors.transparent) {
       final backgroundPaint = Paint()
-        ..color = backgroundColor ?? Colors.transparent
+        ..color = backgroundColor
         ..style = PaintingStyle.fill;
       canvas.drawRRect(clipRect, backgroundPaint);
     }
