@@ -390,12 +390,10 @@ class _AnimatedRectProgressBarPainter extends CustomPainter {
         ..style = PaintingStyle.fill;
       canvas.drawRRect(clipRect, backgroundPaint);
     }
-    if (paintingStyle == PaintingStyle.fill) {
-      canvas.clipRRect(clipRect);
-    }
 
     final RRect paintBar;
-    if (percentage != null) {
+    if (paintingStyle == PaintingStyle.fill) {
+      canvas.clipRRect(clipRect);
       switch (fillDirection) {
         case AxisDirection.up:
           paintBar = RRect.fromLTRBAndCorners(0, clipRect.height - (clipRect.height * (percentage ?? 0)), clipRect.width, clipRect.height,
@@ -433,6 +431,7 @@ class _AnimatedRectProgressBarPainter extends CustomPainter {
     } else {
       paintBar = clipRect;
     }
+
     canvas.drawRRect(paintBar, paint);
   }
 
